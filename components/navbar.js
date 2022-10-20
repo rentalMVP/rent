@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function Header() {
 
   return (
-    <section className="p-4 bg-black" >
+    <section className="p-4 bg-black">
         <div style={{ maxWidth:"1440px"}} className="m-auto">
             <Link href='/' > 
               <div className='flex flex-row items-center justify-start cursor-pointer'>

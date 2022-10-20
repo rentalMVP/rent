@@ -75,6 +75,8 @@ a {
 
 .link:hover::before {
   transform: translate(-50%, 0) scaleX(1);
+
+
 }
 
 .menu-drop {
@@ -267,6 +269,7 @@ a {
 }
 .li_text{
   border-bottom: solid 2px transparent;
+  transition: 1s;
   }
 .li_text:hover{
   border-bottom: solid 2px white ;
@@ -341,3 +344,67 @@ a {
   .arrow_right:hover{
     opacity:0.5;
   }
+  .stickySearch{
+    position: fixed;
+    z-index: 10;
+    bottom: 6vw;
+    right: 1vw;
+    width: 3.5vw;
+    background-color:#3c3c3c;
+    padding: 1.2vw 1.1vw;
+    border-radius: 50%;
+    transition: 0.3s;
+    border:1px solid transparent;
+  }
+  .stickySearch input{
+    width:100%;
+    font-size: 1vw;
+    display: none;
+    outline: none;
+    color:rgb(255, 255, 255);
+    background-color: transparent;
+   
+  }
+  .stickySearch input::placeholder{
+    color:rgb(185, 180, 180);
+    font-style: italic;
+  }
+  .stickySearch:hover{
+    width:30vw;
+    border-radius: 0.5vw;  
+    border:1px solid black
+    ;
+  }
+  .stickySearch:hover .searchIcon{
+    display: none;
+  }
+  .stickySearch:hover input{
+    display: block;
+  }
+  .backButton{
+    position: fixed;
+    z-index: 10;
+    bottom: 2vw;
+    right: 1vw;
+    width: 3.5vw;
+    background-color:#3c3c3c;
+    padding: 1vw 0vw;
+    border-radius: 50%;
+    transition: 0.3s;
+    font-size: 1.2vw;
+
+  }
+  .backButton:hover{
+    opacity:0.5;
+
+  }
+  .show_more{
+    position: absolute;
+    right: 10px;
+    font-size: 20px;
+  }
+  .show_more:hover{
+    opacity: 0.5;
+
+  }
+

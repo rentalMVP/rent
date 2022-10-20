@@ -1,8 +1,74 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
+import {faGlobe} from "@fortawesome/free-solid-svg-icons"
+import {faLocationDot} from "@fortawesome/free-solid-svg-icons"
+import {faCommentDots} from "@fortawesome/free-solid-svg-icons"
+import { faArrowRotateLeft} from "@fortawesome/free-solid-svg-icons"
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons"
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
+import local_datas from '../../data.json';
+import { useState } from "react"
 
 const Detail = ({ id }) => {
+    var show_data = ''
+    var show_owner= ''
+    var showText=''
+    var content= Array()
+    var themePanel= []
+    for(let i in local_datas.rental_items) {
+        if(local_datas.rental_items[i].item_id == id){
+            show_data = local_datas.rental_items[i];
+        }
+    }  
+    for(let k in local_datas.rental_owners){
+        if(local_datas.rental_owners[k]["name"] == show_data["rental_owner"]){
+            show_owner = local_datas.rental_owners[k]; 
+        }
+    }
+    for(let p in local_datas.rental_items) {
+        if(local_datas.rental_items[p]["rental_owner"] == show_owner["name"]){
+            content.push(local_datas.rental_items[p])
+        }
+    }
+    const [ showMore, setShowMore ] = useState(true);
+    const writeDetails = () =>{
+        let acronym = show_data && show_data["item_description"];
+         acronym = acronym && acronym.substr(0, 800);
+         if(showMore){
+            return( 
+                <>
+                    <div dangerouslySetInnerHTML={{ __html: '<p style={{ lineHeight:"16px", fontSize:"12px", color:"white"}}>' + acronym+'&nbsp;......</p>'}}></div>
+                </>)
+            }
+        else{
+            return(
+                <>
+                    <div dangerouslySetInnerHTML={{ __html: '<p style={{ lineHeight:"16px", fontSize:"12px", color:"white"}}>' + show_data["item_description"]+'</p>'}}></div>
+                </>  
+            )
+        }           
+    } 
+    if( showMore ) showText = 'Show more...'
+    if( !showMore ) showText = 'Show less...' 
+            
+    console.log( local_datas.rental_items)
+    console.log( show_owner )
+    console.log( content )
+    if( content.length >= 4) {
+        themePanel.push(<FontAwesomeIcon icon={ faAngleLeft} style={{ fontSize:"20px", color:"white"}} className="arrow_left" />)
+        for(let a = 0; a < 4 ; a++){
+            themePanel.push(<Link href={`/cards/${content[a]["item_id"]}`}><img src={ content[a]["item_image"]} style={{ width:"320px", margin:"5px", border:"solid 2px transparent", borderRadius:"10px"}} className="rental_image"/></Link>) 
+        }
+        themePanel.push(<FontAwesomeIcon icon={ faAngleRight} style={{ fontSize:"20px", color:"white"}} className="arrow_left" />)
+    }
+     else{
+        for(let b in content){
+            themePanel.push(<Link href={`/cards/1`}><img src="../cards/sample.webp" style={{ width:"320px", margin:"5px", border:"solid 2px transparent", borderRadius:"10px"}} className="rental_image"/></Link>) 
+        }
+
+     }  
     return (
-        <section style={{ background: "#161616", height:"auto", paddingTop:"50px" , paddingBottom:"50px"}}>
+        <section style={{ background: "#161616", height:"100%", paddingTop:"50px" , paddingBottom:"50px"}}>
             <div style={{ maxWidth: "1440px", margin: "auto", padding:"50px 50px 50px 50px", background:"#3a3a3a", borderRadius:"10px", position:"relative"}} className="flex flex-col flex-nowrap" >
                 <div className="flex flex-row">
                     <div style={{ width:"900px"}}>
@@ -32,25 +98,24 @@ const Detail = ({ id }) => {
                                 </div>
                                 <div className="relative w-full overflow-hidden carousel-inner">
                                     <div className="float-left w-full carousel-item active">
-                                    <img
-                                        src="../cards/sample.webp"
-                                        className="block w-full"
-                                        alt="Wild Landscape"
-                                    />
+                                        <img src={show_data["item_image"]}
+                                            className="block w-full"
+                                            alt="Wild Landscape"
+                                        />
                                     </div>
                                     <div className="float-left w-full carousel-item">
-                                    <img
-                                        src="../cards/sample.webp"
-                                        className="block w-full"
-                                        alt="Camera"
-                                    />
+                                        <img
+                                            src="../cards/sample.webp"
+                                            className="block w-full"
+                                            alt="Camera"
+                                        />
                                     </div>
                                     <div className="float-left w-full carousel-item">
-                                    <img
-                                        src="../cards/sample.webp"
-                                        className="block w-full"
-                                        alt="Exotic Fruits"
-                                    />
+                                        <img
+                                            src="../cards/sample.webp"
+                                            className="block w-full"
+                                            alt="Exotic Fruits"
+                                        />
                                     </div>
                                 </div>
                                 <button
@@ -73,68 +138,39 @@ const Detail = ({ id }) => {
                                 </button>
                             </div>  
                         </div>
-                        <div>
-                            <p style={{ fontFamily:'Optima', fontStyle:"italic", fontSize:"40px", fontWeight:"700", color:"white", padding:"20px", color:"white"}}>ACLER Empire Dress - RRP $520</p>
-                            <p style={{ lineHeight:"24px", fontSize:"18px", color:"white"}}>
-                            "ACLER Horrock Dress (Midnight) - RRP $495<br/>
-                            Australian designer label Acler combines contemporary design codes with a whimsical, feminine streak to create collections that are at once enchanting and undeniably modern. <br/>
-                            Delivered in a whimsical wallpaper floral print, the Horrock Dress boasts voluminous puffed shoulders, an alluring V-neckline, and polished gold-toned hardware. Temper the vivid florals by styling yours with neutral-toned heels.<br/>
-                            Our model is wearing a size AU 8 dress. She is 170.2cm (5’7”) tall with an 80.0cm (31.5”) bust, a 61.0cm (24”) waist, and 76.2cm (30”) hips.<br/>
-                            - Heavyweight textured satin; non-stretch; unlined; opaque<br/>
-                            - Black base; orange, white, green, and brown wallpaper floral print; gold-toned hardware<br/>
-                            - Deep V-neckline<br/>
-                            - Puffed shoulders<br/>
-                            We also have this style available in Ivory
-                            SIZE & FIT
-                            We found this style to be very versatile. Size 8 will also fit a size 6 and 8. Size 10 will also fit a size 8 and 10
-                            Length: 134cm
-                            Dresses are available for try-on & bookings at our NORTH SYDNEY STORE at 245 Pacific Highway, North Sydney NSW 2060."<br/>
-                            </p>
+                        <div className="relative">
+                            <p style={{ fontFamily:'Oswald', fontStyle:"normal", fontSize:"40px", fontWeight:"700", color:"white", padding:"20px", color:"white"}}>ACLER Empire Dress - RRP $520</p>
+                            { writeDetails()}
+                            <button  className="show_more" onClick={ () => setShowMore(!showMore)}>{ showText }</button>
                         </div>
                     </div>
                     <div style={{ width:"500px", padding:"40px"}}>
-                        <p style={{ fontFamily:'Oswald', fontStyle:"normal", fontSize:"50px", fontWeight:"700", color:"white", textAlign:"center"}}>Dress for a Night</p>
-                        <a href="https://www.dressforanight.com.au/" style={{ marginTop:"30px", lineHeight:"24px", fontSize:"20px"}} className="flex flex-row items-center"><img src="../cards/www.svg" style={{ width:"30px", marginRight:"20px", color:"white"}}/>https://www.dressforanight.com.au/</a>
-                        <p style={{ lineHeight:"24px", fontSize:"18px",marginTop:"30px", color:"white"}} className="flex flex-row items-center"><img src="../cards/address.svg" style={{ width:"30px", marginRight:"20px",whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}/> North Sydney NSW 2060</p>
+                        <p style={{ fontFamily:'Oswald', fontStyle:"normal", fontSize:"50px", fontWeight:"700", color:"white", textAlign:"center"}}>{show_owner["name"]}</p>
+                        <a href={show_owner["website"]} style={{ marginTop:"30px", lineHeight:"24px", fontSize:"20px"}} className="flex flex-row items-center">
+                            <FontAwesomeIcon icon={faGlobe} style={{ marginRight:"20px", fontSize:"30px"}}/>{show_owner["website"]}</a>
+                        <p style={{ lineHeight:"24px", fontSize:"18px",marginTop:"30px", color:"white"}} className="flex flex-row items-center"><FontAwesomeIcon icon={ faLocationDot } style={{ marginRight:"20px", fontSize:"30px", lineHeight:"35px"}}/> { show_owner["address"] }</p>
                         <p style={{ marginTop:"30px", fontFamily:"Roboto", fontSize:"18px", color:"white"}} className="flex flex-row items-center font-bold">
-                        <img src="../cards/review.svg" style={{ height:"30px", marginRight:"20px"}}/> 729
+                        <FontAwesomeIcon icon={ faCommentDots } style={{ marginRight:"20px", fontSize:"30px"}}/> {show_owner["reviews"]}
                         </p>
                         <div style={{ marginTop:"30px"}}>
-                            <p className="flex flex-row text-center"><img src="../cards/star.svg" style={{ height:"40px"}}/>
+                            <p className="flex flex-row text-center">
                             <img src="../cards/star.svg" style={{ height:"40px"}}/>
                             <img src="../cards/star.svg" style={{ height:"40px"}}/>
                             <img src="../cards/star.svg" style={{ height:"40px"}}/>
-                            <img src="../cards/star.svg" style={{ height:"40px"}}/></p>
+                            <img src="../cards/star.svg" style={{ height:"40px"}}/>
+                            <img src="../cards/star.svg" style={{ height:"40px"}}/>
+                            </p>
                         </div>
                         
-                        <button style={{ marginTop:"50px",padding:"10px 80px", fontSize:"24px", background:"white", color:"black", marginRight:"auto", marginLeft:"auto", borderRadius:"10px"}} className="flex flex-row items-center phone"><img src="../cards/call.svg" style={{ width:"30px", marginRight:"20px"}}/> (20) 8904 0635 </button>
+                        <button style={{ marginTop:"50px",padding:"10px 80px", fontSize:"24px", background:"white", color:"black", marginRight:"auto", marginLeft:"auto", borderRadius:"10px"}} className="flex flex-row items-center phone"><img src="../cards/call.svg" style={{ width:"30px", marginRight:"20px"}}/> {show_owner["phone_number"]} </button>
                     </div>
                 </div>
-                <p style={{ fontFamily:'Optima', fontStyle:"italic  ", fontSize:"40px", fontWeight:"700", color:"white", padding:"20px", color:"white"}}>Australian Rental(Dress for Night)</p>
-                <p style={{ fontFamily:'Optima', fontStyle:"normal", fontSize:"25px", fontWeight:"300", color:"white", padding:"10px 10px 10px 20px", color:"white", marginTop:"-10px"}}>Google rating 4.7(702)</p>
-                
-                <div className="flex flex-row" style={{ padding:"0px 0px 30px 0px", margin:"auto"}}>
-                    <img src="../cards/left.svg" style={{ width:"30px"}} className="arrow_left"/>
-                    <div className="flex flex-row">
-                       <Link href={`cards/1`}>
-                       <img src="../cards/sample.webp" style={{ width:"300px", margin:"5px", border:"solid 2px transparent", borderRadius:"10px"}} className="rental_image"/>
-                       </Link>
-                       <Link href={`cards/1`}>
-                       <img src="../cards/sample.webp" style={{ width:"300px", margin:"5px", border:"solid 2px transparent", borderRadius:"10px"}} className="rental_image"/>
-                       </Link>
-                       <Link href={`cards/1`}>
-                       <img src="../cards/sample.webp" style={{ width:"300px", margin:"5px", border:"solid 2px transparent", borderRadius:"10px"}} className="rental_image"/>
-                       </Link>
-                       <Link href={`cards/1`}>
-                       <img src="../cards/sample.webp" style={{ width:"300px", margin:"5px", border:"solid 2px transparent", borderRadius:"10px"}} className="rental_image"/>
-                       </Link>
-                    </div>
-                    <img src="../cards/left.svg" style={{ width:"30px", transform:"scaleX(-1)"}} className="arrow_right"/>
-                </div>
-                <div>
-                    <img src='../back.png' style={{ position:"absolute", width:"70px", bottom:"30px", right:"30px"}} className="return"/>
-                </div>
-                
+                <Link href={`/rental_owner/${show_owner["name"]}`}>
+                    <p style={{ fontFamily:'Oswald', fontStyle:"normal", fontSize:"40px", fontWeight:"700", color:"white", padding:"10px 20px 10px 20px", color:"white", width:"fit-content", cursor:"pointer", marginTop:"30px"}}>Similar Rental Items</p>
+                </Link> 
+                <div className="flex flex-row items-center" style={{ padding:"0px 0px 0px 0px", margin:"auto", marginTop:"20px", marginBottom:"20px"}}>
+                    { themePanel }
+                </div> 
             </div>
             
         </section>
