@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
       <Scroll />
       <Layout>
         <Head>
-          <title>TAKEOFF</title>
+          <title>Rental</title>
           <meta
             name="Description"
             content="Crypto trading"

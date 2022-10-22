@@ -63,7 +63,7 @@ const Detail = ({ id }) => {
     }
      else{
         for(let b in content){
-            themePanel.push(<Link href={`/cards/1`}><img src="../cards/sample.webp" style={{ width:"320px", margin:"5px", border:"solid 2px transparent", borderRadius:"10px"}} className="rental_image"/></Link>) 
+            themePanel.push(<Link href={`/cards/${content[a]["item_id"]}`}><img src="../cards/sample.webp" style={{ width:"320px", margin:"5px", border:"solid 2px transparent", borderRadius:"10px"}} className="rental_image"/></Link>) 
         }
 
      }  

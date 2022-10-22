@@ -32,8 +32,8 @@ export default function IndexPage() {
  if( category == "All"){
     show_data=local_datas.rental_items
  }
+ console.log(category)
  console.log(show_data)
- 
   return (
     <>
      <Search category={category} setCategory={setCategory}/>
