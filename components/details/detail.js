@@ -6,6 +6,8 @@ import {faCommentDots} from "@fortawesome/free-solid-svg-icons"
 import { faArrowRotateLeft} from "@fortawesome/free-solid-svg-icons"
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
+import { faMoneyBill } from "@fortawesome/free-solid-svg-icons"
+import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons"
 import local_datas from '../../data.json';
 import { useState } from "react"
 
@@ -33,7 +35,7 @@ const Detail = ({ id }) => {
     const [ showMore, setShowMore ] = useState(true);
     const writeDetails = () =>{
         let acronym = show_data && show_data["item_description"];
-         acronym = acronym && acronym.substr(0, 800);
+         acronym = acronym && acronym.substr(0, 400);
          if(showMore){
             return( 
                 <>
@@ -142,6 +144,13 @@ const Detail = ({ id }) => {
                             <p style={{ fontFamily:'Oswald', fontStyle:"normal", fontSize:"40px", fontWeight:"700", color:"white", padding:"20px", color:"white"}}>ACLER Empire Dress - RRP $520</p>
                             { writeDetails()}
                             <button  className="show_more" onClick={ () => setShowMore(!showMore)}>{ showText }</button>
+                        </div>
+                        <div style={{ marginTop:"40px", marginLeft:"40px"}}>
+                                <p style={{ fontSize:"24px", color:"white"}} className="flex flex-row items-center "><FontAwesomeIcon icon={ faMoneyBill} style={{ fontSize:"30px"}}></FontAwesomeIcon>&nbsp;&nbsp;   {show_data["item_price"]}</p>
+                                <p style={{ fontSize:"24px", color:"white", marginTop:"20px"}} className="flex flex-row items-center "><FontAwesomeIcon icon={ faMoneyBill} style={{ fontSize:"30px"}}></FontAwesomeIcon>&nbsp;&nbsp;&nbsp;{show_data["item_minimun_price"]}(min)</p>
+                                <p style={{ fontSize:"24px", color:"white", marginTop:"20px"}} className="flex flex-row items-center "><FontAwesomeIcon icon={ faCalendarCheck} style={{ fontSize:"30px"}}></FontAwesomeIcon>&nbsp;&nbsp;&nbsp;&nbsp;{show_data["last_modified"]}</p>
+                                
+                                
                         </div>
                     </div>
                     <div style={{ width:"500px", padding:"40px"}}>
