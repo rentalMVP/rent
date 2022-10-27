@@ -141,14 +141,15 @@ const Detail = ({ id }) => {
                             </div>  
                         </div>
                         <div className="relative">
-                            <p style={{ fontFamily:'Oswald', fontStyle:"normal", fontSize:"40px", fontWeight:"700", color:"white", padding:"20px", color:"white"}}>ACLER Empire Dress - RRP $520</p>
+                            <p style={{ fontFamily:'Oswald', fontStyle:"normal", fontSize:"40px", fontWeight:"700", color:"white", padding:"20px", color:"white"}}>{show_data["item_name"]}</p>
                             { writeDetails()}
                             <button  className="show_more" onClick={ () => setShowMore(!showMore)}>{ showText }</button>
                         </div>
                         <div style={{ marginTop:"40px", marginLeft:"40px"}}>
                                 <p style={{ fontSize:"24px", color:"white"}} className="flex flex-row items-center "><FontAwesomeIcon icon={ faMoneyBill} style={{ fontSize:"30px"}}></FontAwesomeIcon>&nbsp;&nbsp;   {show_data["item_price"]}</p>
                                 <p style={{ fontSize:"24px", color:"white", marginTop:"20px"}} className="flex flex-row items-center "><FontAwesomeIcon icon={ faMoneyBill} style={{ fontSize:"30px"}}></FontAwesomeIcon>&nbsp;&nbsp;&nbsp;{show_data["item_minimun_price"]}(min)</p>
-                                <p style={{ fontSize:"24px", color:"white", marginTop:"20px"}} className="flex flex-row items-center "><FontAwesomeIcon icon={ faCalendarCheck} style={{ fontSize:"30px"}}></FontAwesomeIcon>&nbsp;&nbsp;&nbsp;&nbsp;{show_data["last_modified"]}</p>
+                                <p style={{ fontSize:"24px", color:"white", marginTop:"20px"}} className="flex flex-row items-center "><FontAwesomeIcon icon={ faCalendarCheck} style={{ fontSize:"30px"}}></FontAwesomeIcon>&nbsp;&nbsp;&nbsp;&nbsp;{show_data["last_modified"]}
+                                </p>
                                 
                                 
                         </div>

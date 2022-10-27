@@ -366,14 +366,19 @@ a {
    
   }
   .stickySearch input::placeholder{
-    color:rgb(185, 180, 180);
+    color:rgb(255, 255, 255);
     font-style: italic;
   }
   .stickySearch:hover{
     width:30vw;
     border-radius: 0.5vw;  
-    border:1px solid black
-    ;
+    border:1px solid black;
+  }
+  .stickySearch:hover .search_button{
+    display: block;
+  }
+  .stickySearch .search_button{
+    display: none;
   }
   .stickySearch:hover .searchIcon{
     display: none;
