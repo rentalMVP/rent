@@ -1,5 +1,6 @@
 import "../css/index.css";
 import "../css/style.css";
+import "../css/carousel.scss"
 import Head from "next/head";
 import Layout from "../components/layout";
 import ProgressBar from '@badrap/bar-of-progress'

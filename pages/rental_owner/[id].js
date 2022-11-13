@@ -1,12 +1,18 @@
 
 import { useRouter } from 'next/router'
 import RentalOwner from '../../components/rentalOwner/rentalOwner'
+import {okgood, okno} from '../api/firestoreServiceProvider'
 export default function RentalOwnersPage() {
     const router = useRouter()
-    const { id } = router.query
+    const { id } = router.query;
+    const getRentalOwnerName = (id) =>{
+      console.log(id)
+
+    }
+    getRentalOwnerName();
   return (
     <>
-     <RentalOwner id={id}/>
+     {id && <RentalOwner id={id}/>}
     </>
   )
 }

@@ -8,7 +8,7 @@ export default function CardsPage() {
 
   return (
     <>
-     <Detail id={id}/>
+    {id && <Detail id={id}/>}
     </>
   )
 }
